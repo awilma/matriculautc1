@@ -1,0 +1,136 @@
+#{extends 'main.html' /}
+#{set title:'varmalla.html' /}
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:6px;
+	color:#333333;
+	border-width: 2px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	background:#b5cfd2 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.imagetable td {
+	background:#dcddc0 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+</style>
+
+<style type="text/css">
+   .Img {
+
+
+
+/* Estilos propios de la etiqueta, "background", "z-index", etc.. */
+
+    -webkit-transition: All 0.6863s ease;
+
+    -moz-transition: All 0.6863s ease;
+
+    -o-transition: All 0.6863s ease;
+
+    -webkit-transform: rotate(0deg) scale(1) skew(180deg) translate(0px);
+
+    -moz-transform: rotate(0deg) scale(1) skew(180deg) translate(0px);
+
+    -o-transform: rotate(0deg) scale(1) skew(180deg) translate(0px);
+}
+.Img:hover {
+
+
+
+-webkit-transform: rotate(0deg) scale(1.500) skew(180deg) translate(0px);
+
+    -moz-transform: rotate(0deg) scale(1.500) skew(180deg) translate(0px);
+
+    -o-transform: rotate(0deg) scale(1.500) skew(180deg) translate(0px);
+
+    }
+</style>
+<div style='text-align:center;'>
+  
+<div class="well row col-lg-12 text-center">
+	<h1>Malla</h1>
+	
+	Las asignaturas de color <span style="color: green;">verde</span> son las que esta cursando o ya fueron aprobadas. <br />
+	Las asignaturas de color <span style="color: red;">rojo</span> son las que estan pendientes.
+	
+</div>
+
+
+
+#{if malla}
+<center>
+<div class="well row" >
+	${malla.carrera.nombre}<br>
+	</center>
+	<div class="row">
+	<div class="col-lg-0"></div>
+		<div class="col-lg-12">
+
+	
+	
+	<table class="imagetable" >
+	<tr>
+	#{list items: malla.ciclos, as:'ciclo'}
+		<th style="font-family : Imprint MT Shadow;"><font size=4>
+				${ciclo.nombre}	</font>		
+		</th>
+
+		
+	#{/list}
+	</tr>
+	<tr>
+	#{list items: malla.ciclos, as:'ciclo'}
+		<td><div class="Img">
+			<table BORDER="2px"  WIDTH=10 HEIGHT=400>	
+			#{list items:ciclo.materias, as:'materia'}		
+				
+				<tr>
+				
+				#{if conectado.ciclo.id < ciclo.estado.id}
+				
+					<td ><span style="color:red;">${materia.nombre}</span></td>
+					<td><span style="color:red;">${materia.creditos}</span></td>
+				#{/if}
+				#{else}
+					<td ><span style="color:green;">${materia.nombre}</span></td>
+					<td><span style="color:green;">${materia.creditos}</span></td>
+				#{/else}
+					
+			<tr>
+						
+			#{/list}
+			</table>
+			</div>
+		</td>
+	#{/list}
+	</tr>
+	
+	</table>
+		</div>
+	</div>
+</div>
+
+#{/if}
+
+
+#{else}
+<br /><br />
+<div class="row">
+	<div class="alert alert-danger">	
+		No existen mallas
+	</div>
+</div>
+
+#{/else}

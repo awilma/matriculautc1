@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+
+        <div class="well">
+        	<div class="alert alert-info text-center">
+            <h1><a href="@{CRUD.index()}">&{'crud.title'}</a></h1>
+            </div>
+        </div>
+
+#{if request.actionMethod != 'index'}
+            <div id="crudBreadcrumb">
+                #{crud.navigation /}
+            </div>
+#{/if}
+
+#{if flash.success}
+            <div class="crudFlash flashSuccess">
+                ${flash.success}
+            </div>
+#{/if}
+#{if flash.error || error}
+            <div class="alert alert-danger">
+                ${error ?: flash.error}
+            </div>
+#{/if}
+
+        <div id="crudContent">
+        <div class="well">
+	#{doLayout /}
+		</div>
+        </div>
+
+       
+

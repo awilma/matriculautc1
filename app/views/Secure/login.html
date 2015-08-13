@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+#{set title:'login.html' /}
+
+
+
+
+<div class="row">
+	<div class="col-sm-3"></div>
+	
+	
+	<div class="col-sm-6">
+	
+		
+			<!-- Ventana Login -->
+		 #{form @Secure.authenticate(), method:'post'}
+		 	
+		
+			      <div class="well">
+			      		<b><h1>Inicio de Sesion</h1></b>
+			      		Si aun no tiene una cuenta debe <a href="/usuarios/registro">Registrarse!</a><br /><br />
+			      
+				    	#{if flash.clave}
+							<p class="alert alert-danger">&{flash.clave}</p>
+						#{/if}
+						#{if flash.usuario}
+							<p class="alert alert-danger">&{flash.usuario}</p>
+						#{/if}
+		  				#{if flash.inactivo}
+							<p class="alert alert-warning">&{flash.inactivo}</p>
+						#{/if}
+						#{if flash.success}
+						<div class="alert alert-success">
+							Sesión cerrada exitosamente
+						</div>
+						#{/if}
+			       		<label for="">Email:</label>
+			       		<input type="email" required="required"  name="username" value="${flash.username}" class="form-control" placeholder="Ingrese su email" />
+			       		<label for="">Password:</label>
+			       		<input type="password" required="required" name="password" class="form-control" placeholder="Ingrese su password" />
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			        <button type="submit" class="btn btn-primary">Ingresar</button>
+			      </div>	      
+		
+		#{/form}
+	
+	
+	
+	
+	</div>
+	
+	<div class="col-sm-3"></div>
+	
+</div>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+
+<meta name="author" content="">
+
+<title>Reservas</title>
+<link rel="shortcut icon" type="image/png" href="/public/images/logo.gif'}">
+<script src="@{'/public/javascripts/jquery-1.9.1.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+ <script src="@{'/public/javascripts/jquery.validate.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+  <script src="@{'public/javascripts/additional-methods.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+ <script src="@{'/public/javascripts/bootstrap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+ <script src="@{'/public/javascripts/nuevasValidaciones.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+ <script src="@{'/public/javascripts/jquery-ui-1.10.3.custom.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<!-- Bootstrap Core CSS -->
+<link href="@{'public/stylesheets/bootstrap.css'}" rel="stylesheet">
+<link href="@{'public/stylesheets/main.css'}" rel="stylesheet">
+
+<!-- Custom CSS -->
+
+
+
+
+
+
+
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+
+</head>
+
+<body>
+
+<div class="well container" >
+
+
+
+	<div class="row">
+			<div class="col-md-12">
+				<div class="thumbnail">
+					<img src="@{'/public/images/utc.png'}" alt="" />
+				</div>
+				</div>
+	</div>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">HOME</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"	id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+						<li><a href="@{Mallas.verMalla}">MALLA</a></li>
+					 
+					 
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
+			        #{if conectado}
+			        	#{if conectado.rol.descripcion=="Administrador"}
+							
+							<!-- 
+							 <li class="dropdown">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar<span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					           	<li><a href="/materias">Materias</a></li>
+								<li><a href="/mallas">Malla</a></li>
+					          </ul>
+					        </li>
+					          -->
+							<li><a href="/admin">ADMINISTRACION</a></li>
+							
+							 
+							
+						#{/if}
+						#{if conectado.rol.descripcion=="Tutor"}							 
+							<li><a href="/matriculas/indexTutor">MATRICULAS</a></li>
+						#{/if}
+						
+						#{if conectado.rol.descripcion=="Estudiante"}
+							 
+							<li><a href="/matriculas">MATRICULAS</a></li>
+							
+						#{/if}
+						
+					        <li class="dropdown">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>${conectado.email}</b><span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a href="/secure/logout">SALIR</a></li>
+					          </ul>
+			     		   </li>
+			        #{/if}
+			        #{else}
+			        	<li><a data-toggle="modal" href="/secure/login" >INGRESAR</a></li>
+			        	<li><a data-toggle="modal" href="/usuarios/registro" >REGISTRO</a></li>
+			        	
+			        #{/else}
+			      </ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+	<!-- Page Content -->
+
+	#{doLayout /}
+
+	
+	<!-- /.container -->
+
+	<br />
+	<br />
+
+
+
+
+		<!-- Footer -->
+		<!-- Footer -->
+		<center>
+		<footer>			
+			<div class="row">
+			<hr>
+				<div class="col-lg-12">
+					<p>Copyright &copy;  Wilma Rocha - Edgar Tipantuna </p>
+				</div>
+			</div>
+			</div>
+			</center>
+		</footer>
+
+
+
+	<!-- /.container -->
+	
+</div>
+	<!-- Bootstrap Core JavaScript -->
+	
+
+
+
+
+</body>
+
+</html>

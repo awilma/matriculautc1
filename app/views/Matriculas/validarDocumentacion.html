@@ -1,0 +1,193 @@
+#{extends 'main.html' /}
+#{set title:'validar.html' /}
+
+
+
+
+#{list items:documentosValidar, as:'documentacion'}
+
+<form action="@{Matriculas.validacionDoc}" method="get">
+
+<input type="hidden" name="id_documentacion" value="${documentacion.id}" />
+<div class="alert alert-info">
+	La documentacion subida por el Estudiantes es la correcta: &nbsp; <input type="checkbox" name="estado">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button type="submit" class="btn btn-success">Aceptar</button>
+</div>
+
+</form>
+
+
+
+  
+ 
+  
+
+  
+  <div class="container">
+  
+  <a href="@{Matriculas.listadoDocumentos(documentacion.ciclo.id,documentacion.periodo.id)}" class="btn btn-primary">Volver</a>
+  
+ 
+  
+  <br /><br />
+
+<!-------->
+<div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#informacion" data-toggle="tab">Informacion del Estudiante</a></li>
+        <li><a href="#solicitud" data-toggle="tab">Solicitud</a></li>
+        <li><a href="#documentosPersonales" data-toggle="tab">Documentos Personales</a></li>
+        <li><a href="#record" data-toggle="tab">Record</a></li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="informacion">
+           <!-- FOTO y DATOS -->
+             <br /><br /><br />
+	        <div class="col-lg-3">
+	        		<img src="@{verFoto(documentacion.id)}" alt="" height="100px" width="100px" class="pull-right"/>
+	        </div>
+           
+           <div class="col-md-7">
+           		<table class="table table-hover table-bordered">
+           		
+           			<tr>
+           				<td> <b>CEDULA:</b> </td>
+           				<td>           				
+           					${documentacion.usuario.cedula}           					
+           				</td>
+           				
+           			</tr>
+           			
+           			<tr>
+           				<td ><b>APELLIDOS:</b></td>
+           				<td>           				
+           					${documentacion.usuario.apellido}           					
+           				</td>
+           				
+           				
+            		</tr>
+            		
+            		
+            		<tr>            		
+            			<td ><b>NOMBRES:</b></td>   
+            			<td>           				
+           					${documentacion.usuario.nombre}           					
+           				</td>
+           				
+           				
+           				        				
+            		</tr>
+            		
+            		
+            		<tr>            		
+            			<td><b>TELEFONO:</b></td>   
+            			<td>           				
+           					${documentacion.usuario.telefono}           					
+           				</td>
+           				
+           				
+           				        				            		
+            		</tr>
+            		
+            		<tr>
+            			<td><b>DIRECCION:</b></td>
+            			<td>           				
+           					${documentacion.usuario.cedula}           					
+           				</td>
+           				
+           				
+            		</tr>
+            		
+            		<tr>
+            		
+            			<td><b>EMAIL:</b></td>
+            			<td>           				
+           					${documentacion.usuario.email}           					
+           				</td>
+           				
+           				
+           				
+            		</tr>
+            		
+            		<tr>
+            			
+            			<td><b>CARRERA:</b></td>
+           				<td>           				
+           					${documentacion.usuario.carrera}           					
+           				</td>
+            		
+            		</tr>
+            		
+            		
+            		<tr>
+            		
+            			<td><b>CICLO:</b></td>
+            			<td>           				
+           					${documentacion.ciclo.nombre}           					
+           				</td>
+           				
+           				
+            		
+            		</tr>
+           		
+           		</table>
+           	
+        	    
+        </div>
+      
+           
+        </div>
+        
+        
+        <div class="tab-pane" id="solicitud">
+        
+        	<center><br><br>
+	           <!-- SOLICITUD -->
+	             <object  width="600" height="760" data="@{verSolicitud(documentacion.id)}#zoom=70" >
+				 	 No se puede abrir
+				 </object>
+           </center>
+           
+        </div>
+        
+        <div class="tab-pane" id="documentosPersonales">   
+           <center><br><br>
+	           <!-- DOCUMENTOS -->
+	             <object  width="600" height="760" data="@{verDocumentosPersonales(documentacion.id)}#zoom=70" >
+				  No se puede abrir
+				  </object>
+			 </center> 
+
+        </div>
+        
+        
+        
+        <div class="tab-pane" id="record">
+        
+	        <center><br><br>
+	            <!-- RECORD -->	           
+			  <object  width="900" height="760" data="@{verRecord(documentacion.id)}#zoom=100">
+			  No se puede abrir
+			  </object>
+		  </center>
+        </div>
+        
+    </div>
+</div>
+  
+  
+ 
+#{/list}
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tabs').tab();
+    });
+</script>    
+</div> <!-- container -->

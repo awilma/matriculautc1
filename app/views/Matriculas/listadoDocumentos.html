@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'listadoDocumentos.html' /}
+
+
+<div class="alert alert-success">
+	
+	<h4>TUTOR: Debe revisar la documentacion de los siguientes estudiantes: </h4>
+</div>
+
+
+#{if flash.confirmacion}
+	<div class="alert alert-info">
+		${flash.confirmacion}
+#{/if}
+
+
+<a href="/matriculas/indexTutor" class="btn btn-primary"> <i class="glyphicon glyphicon-arrow-left"> </i>  &nbsp;Volver </a> <br /><br />
+
+
+#{if documentosSubidos}
+
+		<table class="table table-responsive table-bordered table-hover">
+		
+			<tr>
+				<th> <center>  CEDULA </center> </th>
+				<th> <center>  APELLIDO  </center></th>
+				<th> <center> NOMBRE  </center></th>
+				<th> <center> OPCION </center></th>
+			</tr>
+			
+			#{list items:documentosSubidos, as: 'documento'}
+				<tr>
+					<td> ${documento.usuario.cedula} </td>
+					<td> ${documento.usuario.apellido} </td>
+					<td> ${documento.usuario.nombre} </td>
+					<td> <a href="/matriculas/validarDocumentacion?id_documentos=${documento.id}" class="btn btn-success btn-block">Ver</a> </td>
+				</tr>
+										
+			#{/list}
+			
+		</table>
+
+#{/if}
+#{else}
+
+	<div class="alert alert-danger"> Este ciclo aun tiene estudiante que hayan subido sus documentos</div>
+#{/else}

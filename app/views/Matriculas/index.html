@@ -1,0 +1,116 @@
+#{extends 'main.html' /}
+#{set title:'index.html' /}
+
+
+
+
+	
+	#{if periodoActual}
+	<div class="row">
+		<div class="col-lg-12 text-center"><h1>MATRICULAS</h1></div>
+	</div>
+	
+	#{if flash.confirmacionSubida}
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="alert alert-success">${flash.confirmacionSubida}</div>
+			</div>
+		</div>
+		
+	#{/if}
+	
+	
+	<div class="col-lg-4">
+	
+	</div>
+	<div class="row col-lg-4">
+			
+			
+			
+			<div class="well">
+				
+					<h4><b>Periodo: </b></h4>
+					<b>Fecha de Inicio: </b> ${fInicial} <br />
+					<b>Fecha de Finalizacion: </b> ${fFinal}
+			
+			</div>
+	</div>
+	
+	<div class="col-lg-4">
+	
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-lg-12">
+		
+		
+		#{if documentacion}
+		
+			<div class="alert alert-info">
+				<h4>Usted ya ha sudido la documentacion necesaria para el proceso de matriculacion.</h4>
+				<a href="/matriculas/verDocumentacion?id_documentacion=${documentacion.id}" class="btn btn-primary">Ver Documentacion</a>
+			</div>
+			
+		 
+			
+		#{/if}
+		#{else}
+		<div class="alert alert-info">
+			<h4>Para iniciar el proceso de matriculacion debe subir la informacion requerida.</h4>
+			<a href="/matriculas/subirDocumentacion?id_periodo=${periodoActual.id}" class="btn btn-primary">Subir Documentacion</a>
+		</div>
+		#{/else}
+		
+		#{if conectado.rol.descripcion=="Estudiante"}
+			#{if conectado.aprobadoDoc()}
+				<div class="alert alert-success">
+					<h4>Su documentacion ha sido revisada y aprobada satisfactoriamente su matricula esta validada.</h4>
+					<a href="/matriculas/informematricula"  class="btn btn-success">Ver informe</a>
+				</div>
+			#{/if}
+			#{else}
+				<div class="alert alert-warning">
+					<h4>Por favor espere a que su documentacion sea revisada por su tutor.</h4>
+				</div>
+				
+			#{/else}
+		#{/if}
+		</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	#{/if}
+	#{else}
+	
+		<div class="alert alert-danger">Lo sentimos, no estamos en periodo de matriculas</div>
+	#{/else}

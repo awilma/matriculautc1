@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+#{set title:'indexTutor.html' /}
+
+
+
+#{if periodoActual}
+
+	#{if ciclos}
+		
+	
+		<div class="col-lg-4">
+		</div>
+		<div class="col-lg-4">
+			
+			<div class="well">
+				
+					<h4><b>Periodo: </b></h4>
+					<b>Fecha de Inicio: </b> ${fInicial} <br />
+					<b>Fecha de Finalizacion: </b> ${fFinal}
+			
+			</div>
+			<div class="list-group">
+				#{list items:ciclos,as:'ciclo'}	
+							
+								<a href="@{Matriculas.listadoDocumentos(ciclo.id,periodoActual.id)}" class="list-group-item">
+								  <center><h4>${ciclo.nombre}</h4></center>
+								</a>
+				#{/list}
+			</div>
+		
+		</div>
+	#{/if}
+	
+	
+	#{else}
+	
+		<div class="alert alert-danger"><h4> Aun no se ha registrado ningun ciclo </h4></div>
+	
+	#{/else}
+	
+#{/if}
+#{else}
+
+	<div class="alert alert-danger"><h4> Actualmente no hay un periodo de matriculacion</h4></div>
+
+#{/else}

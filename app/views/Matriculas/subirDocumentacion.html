@@ -1,0 +1,135 @@
+#{extends 'main.html' /}
+#{set title:'subirDocumentacion.html' /}
+
+
+<style>
+
+.componente{
+	margin-top:20px;
+}
+
+</style>
+
+<script>
+								
+			$(document).ready(function(){
+
+				function mostrarImagen(input) {
+					 if (input.files && input.files[0]) {
+					  var reader = new FileReader();
+					  reader.onload = function (e) {
+					   $('#img_destino').attr('src', e.target.result);
+					  }
+					  reader.readAsDataURL(input.files[0]);
+					 }
+					}
+				
+					$("#foto").change(function(){						
+					 	mostrarImagen(this);
+					});
+		
+			});
+		
+		</script>
+	
+	
+	<a href="/matriculas" class="btn btn-primary">Volver</a>
+  
+  <br /><br />
+	
+	
+		<form action="@{Matriculas.guardarDocumentacion}" method="POST" id="formDocumentos"  enctype="multipart/form-data">
+	              <div class="panel panel-primary">
+	  
+					 
+					 	<input type="hidden" name="id_periodo" value="${periodoActual.id}" />
+						<div class="panel-heading">
+							<div class="panle-tittle"><b>Documentación Requerida</b></div>
+						</div>
+			
+						
+							<div class="panel-body" >	
+							
+							<div class="form-group">
+							 <label for="" class="col-md-5 control-label text-right" id="msj1">Ciclo a Matricularse:</label>
+                                 <div class="col-md-7">
+                                 			
+                                 			
+                                 		#{if cicloSiguiente}	
+                                    	<input type="hidden" name="id_ciclo" class="form-control" value="${cicloSiguiente.id}">
+                                    	<input type="text"  class="form-control" value="${cicloSiguiente.nombre}" readonly="readonly">
+                                    	#{/if}
+                                    	#{else}
+                                    		<div class="alert alert-danger">No se ha encontrado el siguiente ciclo</div>
+                                    	#{/else}
+                                    	
+                                    	
+                                 </div>	
+                                 
+                                 
+							</div>		<br />		
+							
+							<div class="form-group">
+							 <label for="" class="col-md-5 control-label text-right componte" id="msj1"><br />Solicitud<span class="formato-archivo"> (Escaneado en formato pdf): </span></label>
+                                 <div class="col-md-7">
+                                 			
+                                    	 <input  type="file" name="solicitud" required="required" id="solicitud" title="ERROR" class="btn btn-default btn-file componente"  accept=".pdf">
+                                    	
+                                 </div>	
+							</div>
+							<br> <br>
+							<br>
+					
+							<div class="form-group">
+							 <label for="" class="col-md-5 control-label text-right" >Documentos Personales<span class="formato-archivo"> (Escaneado en formato pdf): </span></label>
+                                 <div class="col-md-7">
+                                 		
+                                    	 <input  type="file" name="documentos" required="required" id="documentos"  class="btn btn-default btn-file"  accept=".pdf">
+                                 </div>			
+							</div>
+							<br>
+							<br>
+							<br>
+							<div class="form-group">
+							 <label for="" class="col-md-5 control-label text-right" >Foto <span class="formato-archivo"> (Escaneado en formato jpg): </span></label>
+                                 
+                                 <div class="col-md-7">          
+                                 		 <img  id="img_destino" height="100px" width="100px" >    <br /><br />                   		
+                                    	 <input  type="file" name="foto" id="foto" required="required" class="btn btn-default btn-file"  accept=".jpg" >
+                                 </div>			
+							</div>
+
+							<div class="form-group" >
+							 <label for=""  class="col-md-5 control-label text-right componente" id="msj1">Record <span class="formato-archivo"> (Escaneado en formato  pdf): </span></label>
+                                 <div class="col-md-7">
+                                    	 <input  type="file" name="record" id="record" required="required" class="btn btn-default btn-file componente"  accept=".pdf">
+                                 </div>			
+							</div>
+							<br>
+							<br>
+							<br>
+								
+											
+				
+							<div class="form-group">
+								 
+                                 <div class="col-md-12">
+                                 		<br>
+                                    	 <button type="submit" class="form-control btn btn-primary"><b>GUARDAR</b></button>
+                                 </div>			
+							</div>
+							<br>
+							<br>
+														
+						 	
+						 </div>	<!--panel body  -->
+					 
+					 </div><!--panel info  -->
+			</form>	
+			
+			
+
+
+
+		
+

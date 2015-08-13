@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:'informeMatricula.html' /}
+<div class="well row">
+
+	<h1>Informe de matricula</h1>
+
+</div>
+
+<div class="well row">
+
+	<div class="col-lg-4">
+	<div class="alert alert-success">Sus datos</div>
+		<table class="table table-bordered">			
+			<tr><th>Nombre</th><th>Apellido</th><th>Cedula</th></tr>
+			<tr><td>${conectado.nombre}</td><td>${conectado.apellido}</td><td>${conectado.cedula}</td></tr>
+		</table>
+	</div>
+
+	
+	<div class="col-lg-4">
+	<div class="alert alert-success">Materias</div>
+		#{if matricula}
+		<table class="table table-bordered">			
+			<tr><th>Materia</th><th>Creditos</th></tr>
+			#{list items:matricula.ciclo.materias, as: 'materia'}
+				<tr><td>${materia.nombre}</td><td>${materia.creditos}</td></tr>
+			#{/list}
+		</table>
+		#{/if}	
+	</div>
+	<div class="col-lg-4">
+		<div class="alert alert-success">Detalles</div>
+		
+		<table class="table table-bordered">			
+			<tr><th>Carrera</th><th>U Academica</th><th>Periodo</th></tr>
+			<tr><td>${conectado.carrera.nombre}</td><td>${conectado.carrera.unidad.nombre}</td><td>${matricula.documentos.periodo}</td></tr>
+		</table>	
+			</div>
+	</div>
+	<center>
+	<button style="font-family : Imprint MT Shadow " onclick="window.print()"><font size=4><strong>IMPRIMIR</strong></font></button>
+	</center>
